@@ -10,7 +10,7 @@ const cart = () => {
     useEffect(() => {
         setTotalPrice(state => state = 0)
         cartList.map(data => {
-            setTotalPrice(state => state + data.price)
+            setTotalPrice(state => state + (data.price * data.amount))
         });
     },[cartList])
 
