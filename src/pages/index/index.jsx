@@ -1,17 +1,44 @@
-import { Link } from "react-router-dom"
+import NavBar from "../../components/navbar/navbar"
 import { useStoreList } from "../../store/storeList"
+import { useCartList } from "../../store/cartList"
+
+import { useEffect } from "react"
 
 const index = () => {
-    const amount = useStoreList(state => state.amount)
-    const increaseAmountByOne = useStoreList(state => state.increaseAmountByOne)
+    const storeList = useStoreList((state) => state.data)
+    const cartList = useCartList((state) => state.data)
+    const addCartList = useCartList((state) => state.addData)
+    const removeCartList = useCartList((state) => state.removeData)
+
+    useEffect(() => {
+        console.log(cartList)
+    })
 
     return(
         <div>
-            <Link to={"/"}>Home</Link>
-            <Link to={"/cart"}>Cart</Link>
-            <h1>TOKOBELI</h1>
-            <p>{amount}</p>
-            <button onClick={increaseAmountByOne}>Add one</button>
+            <NavBar/>
+            <div>
+                {storeList.map((data) => (
+                   <div>
+                        <p>{data.name}</p>
+                        <p>{data.price}</p>
+                        <button onClick={() => {
+                            addCartList(data.name, data.price)
+                        }}>Add To Cart</button>
+                   </div> 
+                ))}
+            </div>
+            <div>
+                {cartList.map((data) => (
+                    <div>
+                        <div>{data.name}</div>
+                        <div>{data.price}</div>
+                        <button onClick={() => {
+                            removeCartList(data.id)
+                        }}>Remove</button>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom"
-import { useStoreList } from "../../store/storeList"
+import NavBar from "../../components/navbar/navbar"
 
 const cart = () => {
-    const amount = useStoreList(state => state.amount)
 
     return(
         <div>
-            <Link to={"/"}>Home</Link>
-            <Link to={"/cart"}>Cart</Link>
-            <p>{amount}</p>
+            <NavBar/>
         </div>
     )
 }

@@ -1,13 +1,17 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
 
-export const useStoreList = create(persist( (set) => ({
-    amount: 40,
-    increaseAmountByOne: () => set((state) => ({ amount: state.amount + 1}))
-}),
- {
-    name: "amountStorage",
-    storage: createJSONStorage(() => sessionStorage)
- }
-) 
+export const useStoreList = create( () => ({
+    data: [
+        {
+            id: 0,
+            name: "panci",
+            price: 100000
+        },
+        {
+            id: 1,
+            name: "pensil",
+            price: 2500
+        }
+    ]
+}) 
 )
