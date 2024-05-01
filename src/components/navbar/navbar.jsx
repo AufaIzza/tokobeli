@@ -1,7 +1,19 @@
 import styles from "./styles.module.css"
 import { Link } from "react-router-dom"
+import { useCartList } from "../../store/cartList"
+import { useState, useEffect } from "react"
 
 const navbar = () => {
+    const cartList = useCartList((state) => state.data)
+    const [cartAmount, setCartAmount] = useState(0)
+
+    useEffect(() => {
+        setCartAmount(state => state = 0)
+        cartList.map(data => {
+            setCartAmount(state => state + data.amount)
+        });
+    },[cartList])
+
     return (
         <div className={styles.navbar}>
             <div className={styles.left}>
@@ -9,7 +21,7 @@ const navbar = () => {
             </div>
             <div className={styles.right}>
                 <Link className={styles.link} to={"/"}>Home</Link>
-                <Link className={styles.link} to={"/cart"}>Cart</Link>
+                <Link className={styles.link} to={"/cart"}>Cart: {cartAmount}</Link>
             </div>
         </div>
     )
