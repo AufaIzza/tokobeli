@@ -1,7 +1,8 @@
 import { useCartList } from "../../../../../../store/cartList"
 import { useState, useEffect } from "react"
+import styles from "./styles.module.css"
 
-const cartCard = ({name, price, id, amount}) => {
+const cartCard = ({name, price, id, amount, image}) => {
     const cartList = useCartList(state => state.data)
     const removeCartList = useCartList((state) => state.removeDataOnId)
     const addItemAmount = useCartList((state) => state.addAmountOnId)
@@ -21,19 +22,28 @@ const cartCard = ({name, price, id, amount}) => {
     }
 
     return (
-        <div>
-            <div>{name}</div>
-            <div>{price}</div>
-            <button onClick={() => {
-                substractItemAmount(id)
-            }}>-</button>
-            <input type="number" name="amount" id="amount" value={inputAmount} onChange={e => inputChange(e.target.value)} />
-            <button onClick={() => {
-                addItemAmount(id)
-            }}>+</button>
-            <button onClick={() => {
-                removeCartList(id)
-            }}>Remove</button>
+        <div className={styles.card}>
+            <div className={styles.div1}>
+                <img src={image} alt={name} className={styles.image} />
+                <div className={styles.div1child}>
+                    <p className={styles.name}>{name}</p>
+                    <button className={styles.remove} onClick={() => {
+                        removeCartList(id)
+                    }}>X</button>
+                </div>
+            </div>
+            <div className={styles.div2}>
+                <p className={styles.price}>Rp{price}</p>
+                <div className={styles.amountDiv}>
+                    <button className={styles.sub} onClick={() => {
+                        substractItemAmount(id)
+                    }}>-</button>
+                    <input type="number" name="amount" className={styles.amount} id="amount" value={inputAmount} onChange={e => inputChange(e.target.value)} />
+                    <button className={styles.add} onClick={() => {
+                        addItemAmount(id)
+                    }}>+</button>
+                </div>
+            </div>
         </div>
     )
 }

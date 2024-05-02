@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCartList } from "../../../../store/cartList"
 import { useHistoryList } from "../../../../store/historyList"
+import styles from "./styles.module.css"
 
 const BuySuccess = () => {
     const navigate = useNavigate()
@@ -11,7 +12,7 @@ const BuySuccess = () => {
 
     useEffect(() => {
         cartList.forEach(element => {
-            addHistoryList(element.name, element.price, element.amount, element.mainItem)
+            addHistoryList(element.name, element.price, element.amount, element.mainItem, element.image)
         });
         deleteCartList()
         setTimeout(() => {
@@ -21,7 +22,7 @@ const BuySuccess = () => {
 
     return(
         <div>
-            Buy Success
+            <p className={styles.success}>CHECKOUT SUCCESSFULL</p>
         </div>
     )
 }

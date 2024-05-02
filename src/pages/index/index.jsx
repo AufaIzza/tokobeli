@@ -1,6 +1,7 @@
 import NavBar from "../../components/navbar/navbar"
 import ListCard from "./components/listCard/listCard"
 import { useStoreList } from "../../store/storeList"
+import styles from "./styles.module.css"
 
 const index = () => {
     const storeList = useStoreList((state) => state.data)
@@ -8,9 +9,9 @@ const index = () => {
     return(
         <div>
             <NavBar/>
-            <div>
+            <div className={styles.cards}>
                 {storeList.map((data) => (
-                    <ListCard key={data.id} name={data.name} price={data.price} id={data.id}/>
+                    <ListCard key={data.id} name={data.name} price={data.price} id={data.id} image={data.image}/>
                 ))}
             </div>
         </div>

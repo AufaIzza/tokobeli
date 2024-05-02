@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export const useCartList = create((set) => ({
    data: [],
-   addData: (name, price,id) => set((state) => { 
+   addData: (name, price,id, img) => set((state) => { 
       const sameIdFound = state.data.some(el => el.id === id)
       const mainItemFound = state.data.some(el => el.mainItem === true)
 
@@ -13,7 +13,8 @@ export const useCartList = create((set) => ({
        price: price,
        id: id,
        mainItem: true,
-       amount: 1
+       amount: 1,
+       image: img
       }]})} else {
          return ({
             data: [...state.data, {
@@ -21,7 +22,8 @@ export const useCartList = create((set) => ({
                price: price,
                id: id,
                mainItem: false,
-               amount: 1
+               amount: 1,
+               image: img
             }]
          })
       }
@@ -43,7 +45,8 @@ export const useCartList = create((set) => ({
          price: price,
          id: id,
          mainItem: placeholderMainItem,
-         amount: placeholderAmount2 + 1
+         amount: placeholderAmount2 + 1,
+         image: img
       }]})
    }
 }),
