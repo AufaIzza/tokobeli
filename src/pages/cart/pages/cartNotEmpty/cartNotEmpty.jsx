@@ -2,7 +2,7 @@ import NavBar from "../../../../components/navbar/navbar"
 import { useCartList } from "../../../../store/cartList"
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import CartCard from "../../components/cartCard/cartCard"
+import CartCard from "./components/cartCard/cartCard"
 
 const CartNotEmpty = () => {
     const [totalPrice, setTotalPrice] = useState(0)

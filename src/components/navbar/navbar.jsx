@@ -8,7 +8,7 @@ const navbar = () => {
     const [cartAmount, setCartAmount] = useState(0)
 
     useEffect(() => {
-        setCartAmount(state => state = 0)
+        setCartAmount(0)
         cartList.map(data => {
             setCartAmount(state => state + data.amount)
         });

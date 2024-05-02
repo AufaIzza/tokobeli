@@ -50,6 +50,7 @@ export const useCartList = create((set) => ({
    addAmountOnId: (id) => set((state) => {
       let selected = state.data.filter(el => el.id === id)
       let selectedSelect = selected[0]
+      console.log(selectedSelect)
       selectedSelect.amount = selectedSelect.amount + 1
       let notSelected = state.data.filter(el => el.id !== id)
       return({
@@ -71,10 +72,15 @@ export const useCartList = create((set) => ({
          })
       }
    }),
-   updateAmountOnId: (id) => set((state) => {
-      return({
-         data: [...state.data]
-      })
+   updateAmountOnId: (id, value) => set((state) => {
+   let selected = state.data.filter(el => el.id === id)
+   let selectedSelect = selected[0]
+   selectedSelect.amount = value
+   let notSelected = state.data.filter(el => el.id !== id)
+   return({
+      data: [...notSelected, selectedSelect]
+   })
+   
    }),  
    removeDataOnId: (id) => set((state) => ({data: state.data.filter((car) => car.id !== id)})),
    deleteData: () => set(() => ({data: []}))
