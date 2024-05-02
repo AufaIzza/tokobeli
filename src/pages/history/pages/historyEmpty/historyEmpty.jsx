@@ -1,10 +1,13 @@
 import Navbar from "../../../../components/navbar/navbar"
+import styles from "./styles.module.css"
 
 const HistoryEmpty = () => {
     return (
         <div>
             <Navbar/>
-            <p>History is empty</p>
+            <div>
+                <p className={styles.empty}>HISTORY IS EMPTY</p>
+            </div>
         </div>
     )
 }

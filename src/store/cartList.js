@@ -1,8 +1,9 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-export const useCartList = create((set) => ({
+export const useCartList = create(persist((set) => ({
    data: [],
-   addData: (name, price,id) => set((state) => { 
+   addData: (name, price,id, img) => set((state) => { 
       const sameIdFound = state.data.some(el => el.id === id)
       const mainItemFound = state.data.some(el => el.mainItem === true)
 
@@ -13,7 +14,8 @@ export const useCartList = create((set) => ({
        price: price,
        id: id,
        mainItem: true,
-       amount: 1
+       amount: 1,
+       image: img
       }]})} else {
          return ({
             data: [...state.data, {
@@ -21,7 +23,8 @@ export const useCartList = create((set) => ({
                price: price,
                id: id,
                mainItem: false,
-               amount: 1
+               amount: 1,
+               image: img
             }]
          })
       }
@@ -43,13 +46,15 @@ export const useCartList = create((set) => ({
          price: price,
          id: id,
          mainItem: placeholderMainItem,
-         amount: placeholderAmount2 + 1
+         amount: placeholderAmount2 + 1,
+         image: img
       }]})
    }
 }),
    addAmountOnId: (id) => set((state) => {
       let selected = state.data.filter(el => el.id === id)
       let selectedSelect = selected[0]
+      console.log(selectedSelect)
       selectedSelect.amount = selectedSelect.amount + 1
       let notSelected = state.data.filter(el => el.id !== id)
       return({
@@ -71,11 +76,22 @@ export const useCartList = create((set) => ({
          })
       }
    }),
-   updateAmountOnId: (id) => set((state) => {
-      return({
-         data: [...state.data]
-      })
+   updateAmountOnId: (id, value) => set((state) => {
+   let selected = state.data.filter(el => el.id === id)
+   let selectedSelect = selected[0]
+   selectedSelect.amount = value
+   let notSelected = state.data.filter(el => el.id !== id)
+   return({
+      data: [...notSelected, selectedSelect]
+   })
+   
    }),  
    removeDataOnId: (id) => set((state) => ({data: state.data.filter((car) => car.id !== id)})),
    deleteData: () => set(() => ({data: []}))
-}))
+}),
+    {
+        name: "cart-storage",
+        storage: createJSONStorage(() => sessionStorage)
+    },
+),
+)

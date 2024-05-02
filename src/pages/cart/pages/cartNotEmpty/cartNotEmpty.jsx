@@ -2,7 +2,8 @@ import NavBar from "../../../../components/navbar/navbar"
 import { useCartList } from "../../../../store/cartList"
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
-import CartCard from "../../components/cartCard/cartCard"
+import CartCard from "./components/cartCard/cartCard"
+import styles from "./styles.module.css"
 
 const CartNotEmpty = () => {
     const [totalPrice, setTotalPrice] = useState(0)
@@ -23,15 +24,17 @@ const CartNotEmpty = () => {
     return(
         <div>
             <NavBar/>
-            <div>
-                {cartList.map((data) => (
-                    <div>
-                        <CartCard name={data.name} price={data.price} id={data.id} amount={data.amount}/>
-                    </div>
-                ))}
+            <div className={styles.divContainer}>
+                <div className={styles.div1}>
+                    {cartList.map((data) => (
+                        <CartCard name={data.name} price={data.price} id={data.id} amount={data.amount} image={data.image}/>
+                    ))}
+                </div>
+                <div className={styles.div2}>
+                    <div className={styles.price}>Rp{totalPrice}</div>
+                    <button className={styles.buy} onClick={buyCart}>Buy</button>
+                </div>
             </div>
-            <div>{totalPrice}</div>
-            <button onClick={buyCart}>Buy</button>
         </div>
     )
 }
