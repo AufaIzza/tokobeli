@@ -59,5 +59,6 @@ export const useCartList = create((set) => ({
          data: [...state.data]
       })
    }),  
-   removeData: (id) => set((state) => ({data: state.data.filter((car) => car.id !== id)}))
+   removeDataOnId: (id) => set((state) => ({data: state.data.filter((car) => car.id !== id)})),
+   deleteData: () => set(() => ({data: []}))
 }))

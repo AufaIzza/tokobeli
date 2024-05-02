@@ -1,7 +1,7 @@
 import { useCartList } from "../../../../store/cartList"
 
 const cartCard = ({name, price, id, amount}) => {
-    const removeCartList = useCartList((state) => state.removeData)
+    const removeCartList = useCartList((state) => state.removeDataOnId)
     const addItemAmount = useCartList((state) => state.addAmountOnId)
     const substractItemAmount = useCartList((state) => state.substractAmountOnId)
 
