@@ -15,6 +15,9 @@ const routers = () => {
             element: <Cart/>,
         },
         {
+
+        },
+        {
             path: "/cart/success",
             element: <BuySuccess/>
         }
