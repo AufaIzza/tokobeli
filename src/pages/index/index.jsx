@@ -10,7 +10,7 @@ const index = () => {
             <NavBar/>
             <div>
                 {storeList.map((data) => (
-                    <ListCard name={data.name} price={data.price} id={data.id}/>
+                    <ListCard key={data.id} name={data.name} price={data.price} id={data.id}/>
                 ))}
             </div>
         </div>

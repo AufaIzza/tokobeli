@@ -22,6 +22,7 @@ const navbar = () => {
             <div className={styles.right}>
                 <Link className={styles.link} to={"/"}>Home</Link>
                 <Link className={styles.link} to={"/cart"}>Cart: {cartAmount}</Link>
+                <Link className={styles.link} to={"/history"} >History</Link>
             </div>
         </div>
     )
