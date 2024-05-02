@@ -1,6 +1,7 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-export const useCartList = create((set) => ({
+export const useCartList = create(persist((set) => ({
    data: [],
    addData: (name, price,id, img) => set((state) => { 
       const sameIdFound = state.data.some(el => el.id === id)
@@ -87,4 +88,10 @@ export const useCartList = create((set) => ({
    }),  
    removeDataOnId: (id) => set((state) => ({data: state.data.filter((car) => car.id !== id)})),
    deleteData: () => set(() => ({data: []}))
-}))
+}),
+    {
+        name: "cart-storage",
+        storage: createJSONStorage(() => sessionStorage)
+    },
+),
+)
