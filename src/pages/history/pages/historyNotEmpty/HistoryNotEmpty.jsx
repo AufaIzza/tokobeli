@@ -14,7 +14,7 @@ const HistoryNotEmpty = () => {
             {
                 historyList.map((element) => {
                     if (element.mainItem === true) {
-                   return ( <HistoryCard name={element.name} price={element.price} group_id={element.group_id} image={element.image}/> )
+                   return ( <HistoryCard key={element.group_id} name={element.name} price={element.price} group_id={element.group_id} image={element.image}/> )
                     }
                 })
             }

@@ -27,7 +27,7 @@ const CartNotEmpty = () => {
             <div className={styles.divContainer}>
                 <div className={styles.div1}>
                     {cartList.map((data) => (
-                        <CartCard name={data.name} price={data.price} id={data.id} amount={data.amount} image={data.image}/>
+                        <CartCard key={data.id} name={data.name} price={data.price} id={data.id} amount={data.amount} image={data.image}/>
                     ))}
                 </div>
                 <div className={styles.div2}>

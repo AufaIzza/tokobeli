@@ -54,7 +54,6 @@ export const useCartList = create(persist((set) => ({
    addAmountOnId: (id) => set((state) => {
       let selected = state.data.filter(el => el.id === id)
       let selectedSelect = selected[0]
-      console.log(selectedSelect)
       selectedSelect.amount = selectedSelect.amount + 1
       let notSelected = state.data.filter(el => el.id !== id)
       return({

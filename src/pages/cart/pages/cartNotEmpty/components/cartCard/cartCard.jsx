@@ -12,7 +12,6 @@ const cartCard = ({name, price, id, amount, image}) => {
     const [ inputAmount, setInputAmount] = useState(amount)
 
     useEffect(() => {
-        console.log(cartList)
         setInputAmount(amount)
     },[cartList])
 
