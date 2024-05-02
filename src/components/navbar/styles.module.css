@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    max-width: 1200px;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.right {
+    display: flex;
+    gap: 10px;
+
+}
