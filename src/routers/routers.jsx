@@ -4,6 +4,7 @@ import Index from "../pages/index/index"
 import Cart from "../pages/cart/cart";
 import BuySuccess from "../pages/cart/pages/buySuccess/BuySuccess";
 import History from "../pages/history/history";
+import ShowHistory from "../pages/history/pages/showHistory/showHistory";
 
 const routers = () => {
     const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const routers = () => {
         {
             path: "/history",
             element: <History/>
+        },
+        {
+            path: "/history/show/:id",
+            element: <ShowHistory/>
         }
     ])
 

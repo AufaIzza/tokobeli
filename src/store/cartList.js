@@ -4,19 +4,35 @@ export const useCartList = create((set) => ({
    data: [],
    addData: (name, price,id) => set((state) => { 
       const sameIdFound = state.data.some(el => el.id === id)
+      const mainItemFound = state.data.some(el => el.mainItem === true)
+
       if (!sameIdFound) {
+         if (!mainItemFound) {
       return({data: [...state.data, {
        name: name,
        price: price,
        id: id,
+       mainItem: true,
        amount: 1
-      }]})
+      }]})} else {
+         return ({
+            data: [...state.data, {
+               name: name,
+               price: price,
+               id: id,
+               mainItem: false,
+               amount: 1
+            }]
+         })
+      }
    } else {
       let placeholderAmount2 = 0
+      let placeholderMainItem = false
       let placeholderAmount = (id) => {
          state.data.forEach(element => {
             if (element.id === id) {
                placeholderAmount2 = element.amount
+               placeholderMainItem = element.mainItem
             }
          })
       }
@@ -26,6 +42,7 @@ export const useCartList = create((set) => ({
          name: name,
          price: price,
          id: id,
+         mainItem: placeholderMainItem,
          amount: placeholderAmount2 + 1
       }]})
    }

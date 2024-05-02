@@ -1,5 +1,5 @@
-const HistoryCard = ({name, price, amount}) => {
-    return(
+const HistoryCardShow = ({name, price, amount}) => {
+    return (
         <div>
             <p>{name}</p>
             <p>{price}</p>
@@ -8,4 +8,4 @@ const HistoryCard = ({name, price, amount}) => {
     )
 }
 
-export default HistoryCard
+export default HistoryCardShow

@@ -1,26 +1,19 @@
-import Navbar from "../../components/navbar/navbar"
 import { useHistoryList } from "../../store/historyList"
-import HistoryCard from "./components/historyCard/historyCard"
-import { useEffect } from "react"
-
+import HistoryNotEmpty from "./pages/historyNotEmpty/HistoryNotEmpty"
+import HistoryEmpty from "./pages/historyEmpty/historyEmpty"
 
 const History = () => {
     const historyList = useHistoryList(state => state.data)
 
-    useEffect(() => {
-        console.log(historyList)
-    }, [])
-
-    return(
-        <div>
-            <Navbar/>
-            {
-                historyList.map((element) => (
-                    <HistoryCard name={element.name} price={element.price} amount={element.amount}/>
-                ))
-            }
-        </div>
-    )
+    if (historyList.length > 0) {
+        return (
+            <HistoryNotEmpty/>
+        )
+    } else {
+        return (
+            <HistoryEmpty/>
+        )
+    }
 }
 
 export default History

@@ -11,7 +11,7 @@ const BuySuccess = () => {
 
     useEffect(() => {
         cartList.forEach(element => {
-            addHistoryList(element.name, element.price, element.amount)
+            addHistoryList(element.name, element.price, element.amount, element.mainItem)
         });
         deleteCartList()
         setTimeout(() => {
