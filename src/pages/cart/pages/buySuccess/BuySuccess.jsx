@@ -23,6 +23,7 @@ const BuySuccess = () => {
     return(
         <div>
             <p className={styles.success}>CHECKOUT SUCCESSFULL</p>
+            <p className={styles.success}>PLEASE WAIT</p>
         </div>
     )
 }
